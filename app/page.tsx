@@ -1,29 +1,20 @@
-import Image from "next/image";
+"use client";
+
+import LightBulb from "@/components/LightBulb";
 
 export default function Home() {
   return (
     <div className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden p-4">
-      {/* Ambient glow behind bulb */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center"></div>
-
-      <main className="relative flex flex-col items-center gap-8 text-center">
-        {/* Lightbulb icon */}
+      <main className="relative flex flex-col items-center gap-4 text-center">
         <div className="relative flex items-center justify-center">
           {/* Icon */}
-          <Image
-            src="/light-bulb.svg"
-            alt="Light bulb"
-            width={160}
-            height={160}
-            className="filter-[invert(1)]"
-          />
+          <LightBulb className="w-48 h-48 fill-white cursor-pointer drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] hover:scale-105 transition-all duration-200 active:scale-95" />
         </div>
 
-        {/* Heading */}
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col">
           <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
             Welcome to{" "}
-            <span className="bg-linear-to-r from-fuchsia-300 to-purple-400 bg-clip-text text-transparent">
+            <span className="bg-linear-to-r from-fuchsia-300 to-purple-500 bg-clip-text text-transparent">
               Cookie Stack!
             </span>
           </h1>
