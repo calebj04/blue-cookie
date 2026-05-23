@@ -27,7 +27,7 @@ export default function Idea() {
           />
         </div>
         <div className="flex w-full max-w-96 h-48 flex-col items-center justify-center border-2 rounded-2xl p-4 gap-4">
-          <p className="text-4xl font-sans">Your Idea</p>
+          <p className="text-4xl font-sans">Custom Idea</p>
           <Image
             src="/tools.svg"
             alt="Tools"
