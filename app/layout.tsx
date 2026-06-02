@@ -1,6 +1,7 @@
 import { Nunito } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import AuthProvider from "@/components/providers/AuthProvider";
+import Header from "@/components/layout/Header";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -15,8 +16,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <Header />
-        {children}
+        <AuthProvider user={null}>
+          <Header />
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );

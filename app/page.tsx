@@ -1,6 +1,6 @@
 "use client";
 
-import LightBulb from "@/components/LightBulb";
+import LightBulb from "@/components/icons/LightBulb";
 import Link from "next/link";
 
 export default function Home() {
