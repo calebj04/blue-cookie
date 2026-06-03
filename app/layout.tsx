@@ -19,7 +19,7 @@ export default async function RootLayout({
   return (
     <html lang="en" className={`${nunito.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
-        <AuthProvider user={user}>
+        <AuthProvider initialUser={user}>
           <Header />
           {children}
         </AuthProvider>
