@@ -23,9 +23,9 @@ export default function IdeaButton({
       await supabase.auth.signInAnonymously();
     }
     if (text === "Random Idea") {
-      router.push("idea/new?src=random");
+      router.push("new/idea?src=random");
     } else if (text === "Custom Idea") {
-      router.push("idea/new?src=custom");
+      router.push("new/idea?src=custom");
     }
   };
 
