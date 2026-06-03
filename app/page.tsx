@@ -1,17 +1,13 @@
 "use client";
 
-import LightBulb from "@/components/icons/LightBulb";
-import Link from "next/link";
+import LightBulb from "@/components/buttons/LightBulb";
 
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden p-4">
       <main className="flex flex-col items-center gap-4 text-center">
         <div className="flex items-center justify-center">
-          {/* Icon */}
-          <Link href="/idea">
-            <LightBulb className="w-48 h-48 fill-white cursor-pointer drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] hover:scale-105 transition-all duration-200 active:scale-95" />
-          </Link>
+          <LightBulb />
         </div>
         <div className="flex flex-col">
           <h1 className="text-4xl font-sans font-bold tracking-tight text-white sm:text-5xl">

@@ -1,4 +1,6 @@
-export default function LightBulb({ className }: { className?: string }) {
+import Link from "next/link";
+
+function Icon({ className }: { className?: string }) {
   return (
     <svg
       viewBox="-4 0 19 19"
@@ -9,5 +11,13 @@ export default function LightBulb({ className }: { className?: string }) {
       <path d="M7.83 14.572a.475.475 0 0 1-.475.476h-3.71a.475.475 0 0 1 0-.95h3.71a.475.475 0 0 1 .475.474z" />
       <path d="M7.19 15.834a.238.238 0 0 1-.078.265 2.669 2.669 0 0 1-3.274 0 .237.237 0 0 1 .145-.425h2.983a.238.238 0 0 1 .225.16z" />
     </svg>
+  );
+}
+
+export default function LightBulb() {
+  return (
+    <Link href="/idea">
+      <Icon className="w-48 h-48 fill-white cursor-pointer drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] hover:scale-105 transition-all duration-200 active:scale-95" />
+    </Link>
   );
 }
