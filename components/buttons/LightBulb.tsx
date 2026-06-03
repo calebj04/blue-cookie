@@ -16,7 +16,7 @@ function Icon({ className }: { className?: string }) {
 
 export default function LightBulb() {
   return (
-    <Link href="/generate">
+    <Link href="/idea">
       <Icon className="w-48 h-48 fill-white cursor-pointer drop-shadow-[0_0_12px_rgba(255,255,255,0.4)] hover:drop-shadow-[0_0_12px_rgba(255,255,255,0.8)] hover:scale-105 transition-all duration-200 active:scale-95" />
     </Link>
   );
