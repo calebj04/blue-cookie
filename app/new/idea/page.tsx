@@ -2,7 +2,6 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-import Random from "@/components/new-pages/Random";
 
 function generate(setLoading: (loading: boolean) => void) {
   setTimeout(() => {
