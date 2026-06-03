@@ -20,7 +20,7 @@ export default function Header() {
           />
         </Link>
         <nav className="flex gap-4">
-          <Link href="/idea">New Idea</Link>
+          <Link href="/generate">New Idea</Link>
         </nav>
         <nav className="flex gap-4">
           <Link href="/saved">Saved Ideas</Link>
