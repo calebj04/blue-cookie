@@ -2,12 +2,7 @@
 
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
-
-function generate(setLoading: (loading: boolean) => void) {
-  setTimeout(() => {
-    setLoading(false);
-  }, 2000);
-}
+import generate from "./actions";
 
 export default function Idea() {
   const [loading, setLoading] = useState(false);
@@ -20,7 +15,7 @@ export default function Idea() {
     if (mode === "random") {
       setLoading(true);
       //prompt gemini
-      generate(setLoading);
+      //const idea = await generate();
     }
   }, []);
 
@@ -28,7 +23,7 @@ export default function Idea() {
     if (mode === "custom" && input) {
       setLoading(true);
       //prompt gemini
-      generate(setLoading);
+      generate();
     }
   }, [input]);
 
