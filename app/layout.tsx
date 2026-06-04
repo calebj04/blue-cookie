@@ -3,6 +3,7 @@ import "./globals.css";
 import { getUser } from "@/lib/supabase/server";
 import AuthProvider from "@/components/providers/AuthProvider";
 import Header from "@/components/layout/Header";
+import "@/styles/animations.css";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -21,7 +22,7 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col">
         <AuthProvider initialUser={user}>
           <Header />
-          {children}
+          <div className="animate-fade-in-up">{children}</div>
         </AuthProvider>
       </body>
     </html>
