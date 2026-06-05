@@ -1,19 +1,20 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { type Status } from "@/app/new/page";
+import generate from "@/app/new/actions";
 
 export default function IdeaButton({
   img,
   text,
+  setStatus,
 }: {
   img: string;
   text: string;
+  setStatus: (status: Status) => void;
 }) {
-  const router = useRouter();
-
   const supabase = createClient();
 
   const user = useAuth();
@@ -23,9 +24,10 @@ export default function IdeaButton({
       await supabase.auth.signInAnonymously();
     }
     if (text === "Random Idea") {
-      router.push("new/idea?q=random");
+      generate();
+      setStatus("loading");
     } else if (text === "Custom Idea") {
-      router.push("new/idea?q=custom");
+      setStatus("input");
     }
   };
 

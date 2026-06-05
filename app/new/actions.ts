@@ -8,6 +8,6 @@ export default async function generate() {
     model: "gemini-3.5-flash",
     contents: "Explain how AI works in a few words",
   });
-
+  console.log(response);
   return response.text;
 }
