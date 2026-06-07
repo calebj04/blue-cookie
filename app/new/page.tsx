@@ -11,7 +11,7 @@ export default function Idea() {
   const { status } = useStatus();
 
   switch (status) {
-    case "status":
+    case "start":
       return <Start />;
     case "customize":
       return <Customize />;
