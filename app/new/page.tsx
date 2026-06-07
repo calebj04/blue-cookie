@@ -1,17 +1,25 @@
-import { useState } from "react";
-import IdeaButton from "@/components/buttons/Idea";
+"use client";
 
-export type Status = "input" | "loading" | "result" | "error" | "";
+import { useStatus } from "@/components/providers/StatusProvider";
+import Start from "@/components/new-pages/Start";
+import Customize from "@/components/new-pages/Customize";
+import Loading from "@/components/new-pages/Loading";
+import Result from "@/components/new-pages/Result";
+import Error from "@/components/new-pages/Error";
 
 export default function Idea() {
-  const [status, setStatus] = useState<Status>("");
+  const { status } = useStatus();
 
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden p-4 transition-all duration-500 ease-out">
-      <main className="flex w-full items-center justify-around gap-4 text-center">
-        <IdeaButton img="/dice.svg" text="Random Idea" setStatus={setStatus} />
-        <IdeaButton img="/tools.svg" text="Custom Idea" setStatus={setStatus} />
-      </main>
-    </div>
-  );
+  switch (status) {
+    case "status":
+      return <Start />;
+    case "customize":
+      return <Customize />;
+    case "loading":
+      return <Loading />;
+    case "result":
+      return <Result />;
+    default:
+      return <Error />;
+  }
 }
