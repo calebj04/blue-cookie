@@ -1,4 +1,3 @@
-import { useState } from "react";
 import IdeaButton from "@/components/buttons/Idea";
 
 export default function Start() {
