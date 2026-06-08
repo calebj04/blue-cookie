@@ -12,16 +12,19 @@ export type Status = "start" | "customize" | "loading" | "result";
 
 type ContextType = {
   status: string;
-  setStatus: Dispatch<SetStateAction<Status>> | null;
+  setStatus: Dispatch<SetStateAction<Status>>;
 };
 
-const StatusContext = createContext<ContextType>({
-  status: "start",
-  setStatus: null,
-});
+const StatusContext = createContext<ContextType | undefined>(undefined);
 
 export function useStatus() {
-  return useContext(StatusContext);
+  const context = useContext(StatusContext);
+
+  if (!context) {
+    throw new Error("useStatus must be used inside StatusProvider");
+  }
+
+  return context;
 }
 
 export default function StatusProvider({

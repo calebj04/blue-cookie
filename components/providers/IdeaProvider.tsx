@@ -10,16 +10,19 @@ import {
 
 type ContextType = {
   idea: string;
-  setIdea: Dispatch<SetStateAction<string>> | null;
+  setIdea: Dispatch<SetStateAction<string>>;
 };
 
-const IdeaContext = createContext<ContextType>({
-  idea: "",
-  setIdea: null,
-});
+const IdeaContext = createContext<ContextType | undefined>(undefined);
 
 export function useIdea() {
-  return useContext(IdeaContext);
+  const context = useContext(IdeaContext);
+
+  if (!context) {
+    throw new Error("useIdea must be used inside IdeaProvider");
+  }
+
+  return context;
 }
 
 export default function IdeaProvider({
