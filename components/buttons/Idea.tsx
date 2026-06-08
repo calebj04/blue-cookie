@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
+import { useIdea } from "../providers/IdeaProvider";
+import { useStatus } from "../providers/StatusProvider";
 import generate from "@/app/new/actions";
 
 export default function IdeaButton({
@@ -16,13 +18,26 @@ export default function IdeaButton({
 
   const user = useAuth();
 
+  const { idea, setIdea } = useIdea();
+  const { setStatus } = useStatus();
+
   const onClick = async () => {
     if (!user) {
       await supabase.auth.signInAnonymously();
     }
     if (text === "Random Idea") {
-      const idea = await generate();
+      setStatus("loading");
+      const res = await generate();
+
+      if (res) {
+        setIdea(res);
+      }
+
+      console.log(res);
     } else if (text === "Custom Idea") {
+      if (setStatus) {
+        setStatus("customize");
+      }
     }
   };
 
