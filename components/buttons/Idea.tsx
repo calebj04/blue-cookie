@@ -18,7 +18,7 @@ export default function IdeaButton({
 
   const user = useAuth();
 
-  const { idea, setIdea } = useIdea();
+  const { setIdea } = useIdea();
   const { setStatus } = useStatus();
 
   const onClick = async () => {
