@@ -8,7 +8,7 @@ export default function Header() {
   const user = useAuth();
 
   return (
-    <header className="flex w-full justify-between p-4 font-sans text-xl">
+    <header className="flex w-full justify-between p-4 text-xl">
       <div className="flex gap-4 items-center">
         <Link href="/">
           <Image

@@ -4,7 +4,7 @@ import LightBulb from "@/components/buttons/LightBulb";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col font-sans items-center justify-center overflow-hidden p-4 animate-fade-in-up">
+    <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden p-4 animate-fade-in-up">
       <main className="flex flex-col items-center gap-4 text-center">
         <div className="flex items-center justify-center">
           <LightBulb />
