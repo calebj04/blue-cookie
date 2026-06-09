@@ -38,7 +38,7 @@ export default function IdeaButton({
       console.log(res);
     } else if (text === "Custom Idea") {
       if (setStatus) {
-        setStatus("loading");
+        setStatus("customize");
       }
     }
   };
