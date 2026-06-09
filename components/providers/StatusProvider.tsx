@@ -8,7 +8,7 @@ import {
   type SetStateAction,
 } from "react";
 
-export type Status = "start" | "customize" | "loading" | "result";
+export type Status = "start" | "customize" | "loading" | "result" | "error";
 
 type ContextType = {
   status: string;

@@ -19,6 +19,8 @@ export default function Idea() {
       return <Loading />;
     case "result":
       return <Result />;
+    case "error":
+      return <Error />;
     default:
       return <Error />;
   }

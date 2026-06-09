@@ -25,14 +25,16 @@ export default function IdeaButton({
     if (!user) {
       await supabase.auth.signInAnonymously();
     }
+
     if (text === "Random Idea") {
       setStatus("loading");
       const res = await generate();
-
       if (res) {
         setIdea(res);
+      } else {
+        setStatus("error");
       }
-
+      setStatus("result");
       console.log(res);
     } else if (text === "Custom Idea") {
       if (setStatus) {
