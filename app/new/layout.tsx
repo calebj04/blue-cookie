@@ -6,9 +6,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <StatusProvider initialStatus="start">
       <IdeaProvider initialIdea="">
-        <div className="min-h-full flex flex-col animate-fade-in-up">
-          {children}
-        </div>
+        <div className="min-h-full flex flex-col">{children}</div>
       </IdeaProvider>
     </StatusProvider>
   );

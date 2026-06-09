@@ -22,7 +22,7 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col">
         <AuthProvider initialUser={user}>
           <Header />
-          <div className="animate-fade-in-up">{children}</div>
+          <div>{children}</div>
         </AuthProvider>
       </body>
     </html>
