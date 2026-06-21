@@ -2,8 +2,8 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { getUser } from "@/lib/supabase/server";
 import AuthProvider from "@/components/providers/AuthProvider";
-import Header from "@/components/layout/Header";
-import "@/styles/animations.css";
+
+import "@/styles/styles.css";
 
 const nunito = Nunito({
   variable: "--font-nunito",
@@ -21,8 +21,8 @@ export default async function RootLayout({
     <html lang="en" className={`${nunito.variable} h-full antialiased`}>
       <body className="min-h-full flex flex-col">
         <AuthProvider initialUser={user}>
-          <Header />
-          <div>{children}</div>
+          <div className="absolute top-0 left-0 w-full h-full bg-linear-to-b from-blue-500 to-transparent pointer-events-none" />
+          <div className="grid-background">{children}</div>
         </AuthProvider>
       </body>
     </html>
