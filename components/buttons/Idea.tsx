@@ -5,7 +5,6 @@ import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
 import { useIdea } from "../providers/IdeaProvider";
 import { useStatus } from "../providers/StatusProvider";
-import generate from "@/app/new/actions";
 
 export default function IdeaButton({
   img,
@@ -28,7 +27,7 @@ export default function IdeaButton({
 
     if (text === "Random Idea") {
       setStatus("loading");
-      const res = await generate();
+      const res = "temp"; //await generate();
       if (res) {
         setIdea(res);
       } else {
