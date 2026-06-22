@@ -1,5 +1,7 @@
 "use client";
 
+import Search from "@/components/buttons/Search";
+
 export default function Home() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden p-4 animate-fade-in-up">
@@ -12,6 +14,7 @@ export default function Home() {
           learning. Describe a project or skill you want to learn and generate a
           blueprint to guide your journey.
         </p>
+        <Search />
       </main>
     </div>
   );
