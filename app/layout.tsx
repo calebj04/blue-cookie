@@ -23,8 +23,10 @@ export default async function RootLayout({
       <body className="min-h-full flex flex-col">
         <AuthProvider initialUser={user}>
           <Header />
-          <div className="absolute top-0 left-0 w-full h-200 bg-linear-to-b from-blue-500 to-transparent pointer-events-none" />
-          <div className="grid-background">{children}</div>
+          <div className="absolute max-h-full top-0 left-0 w-full h-200 bg-linear-to-b from-blue-500 to-transparent pointer-events-none -z-10" />
+          <main className="min-h-screen w-full z-10 grid-background">
+            {children}
+          </main>
         </AuthProvider>
       </body>
     </html>

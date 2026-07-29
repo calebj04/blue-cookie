@@ -4,10 +4,10 @@ import Search from "@/components/buttons/Search";
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center overflow-hidden p-4 animate-fade-in-up">
-      <main className="flex flex-col items-center gap-4 text-center">
+    <div className="flex flex-col min-h-screen items-center justify-center overflow-hidden p-4 animate-fade-in-up">
+      <main className="flex flex-col items-center gap-12 text-center">
         <h1 className="text-6xl font-bold tracking-tight text-white">
-          Don't Let AI keep <br /> you from learning
+          Don&#39;t Let AI keep <br /> you from learning
         </h1>
         <p className="flex flex-col text-xl max-w-3xl text-white">
           Blue Cookie helps you develop your skills through project based
