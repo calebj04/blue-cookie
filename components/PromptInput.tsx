@@ -14,14 +14,17 @@ export default function PromptInput() {
   const supabase = createClient();
   const user = useAuth();
 
-  async function handleSubmit(input: string) {
-    if (!input) return;
+  async function handleSubmit(prompt: string) {
+    if (!prompt) return;
+
     if (!user) {
       await supabase.auth.signInAnonymously();
     }
-    const result = await generate({ input });
-    console.log("result", result);
-    router.push("/new");
+
+    const { error } = await supabase.from("prompts").insert({ prompt: prompt });
+    if (error) console.log(error);
+
+    router.push("/idea");
   }
 
   return (
