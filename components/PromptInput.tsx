@@ -20,18 +20,7 @@ export default function PromptInput() {
       await supabase.auth.signInAnonymously();
     }
 
-    const { data, error } = await supabase
-      .from("prompts")
-      .insert({ prompt: prompt })
-      .select("id")
-      .single();
-
-    if (error) {
-      console.log(error);
-      return;
-    }
-
-    sessionStorage.setItem("promptId", data.id);
+    sessionStorage.setItem("prompt", prompt);
 
     router.push("/idea");
   }

@@ -1,9 +1,37 @@
+"use client";
+
+import { useState, useEffect } from "react";
 import generate from "@/lib/actions";
 
 export default function Idea() {
+  const [loading, setLoading] = useState<boolean>(false);
+  const [idea, setIdea] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    const prompt = sessionStorage.getItem("prompt");
+
+    async function generateIdea() {
+      if (prompt) {
+        setLoading(true);
+        const res = await generate(prompt);
+        setLoading(false);
+        setIdea(res);
+      }
+    }
+
+    generateIdea();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center overflow-hidden p-4 animate-fade-in-up">
+        Loading Baby...
+      </div>
+    );
+  }
   return (
     <div className="flex flex-col min-h-screen items-center justify-center overflow-hidden p-4 animate-fade-in-up">
-      Hello!
+      {idea && JSON.stringify(JSON.parse(idea), null, 2)}
     </div>
   );
 }

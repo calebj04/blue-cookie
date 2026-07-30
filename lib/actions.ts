@@ -2,6 +2,7 @@
 
 import { GoogleGenAI } from "@google/genai";
 import { prompt } from "./prompts";
+import { createClient } from "./supabase/server";
 
 export default async function generate(input: string) {
   const ai = new GoogleGenAI({});
@@ -10,5 +11,29 @@ export default async function generate(input: string) {
     contents: input + prompt,
   });
 
+  await uploadToSupabase(response.text);
+
   return response.text;
+}
+
+async function uploadToSupabase(response: string | undefined) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  if (!user) {
+    throw new Error("User is not authenticated");
+  }
+
+  if (response) {
+    const { error } = await supabase
+      .from("ideas")
+      .insert({ user_id: user.id, content: response });
+
+    if (error) {
+      console.error(error);
+    }
+  }
 }
