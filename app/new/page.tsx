@@ -1,7 +1,7 @@
 export default function New() {
   return (
-    <div>
-      <h1>New Project</h1>
+    <div className="flex flex-col min-h-screen items-center justify-center overflow-hidden p-4 animate-fade-in-up">
+      Hello!
     </div>
   );
 }

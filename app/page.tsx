@@ -1,6 +1,6 @@
 "use client";
 
-import Search from "@/components/buttons/Search";
+import PromptInput from "@/components/PromptInput";
 
 export default function Home() {
   return (
@@ -14,7 +14,7 @@ export default function Home() {
           learning. Describe a project or skill you want to learn and generate a
           blueprint to guide your journey.
         </p>
-        <Search />
+        <PromptInput />
       </main>
     </div>
   );

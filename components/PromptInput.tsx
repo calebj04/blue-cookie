@@ -2,14 +2,22 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Arrow from "../svgs/Arrow";
+import { createClient } from "@/lib/supabase/client";
+import { useAuth } from "@/components/providers/AuthProvider";
+import Arrow from "./svgs/Arrow";
 
-export default function Search() {
+export default function PromptInput() {
   const [text, setText] = useState("");
   const router = useRouter();
 
-  function handleSubmit(text: string) {
+  const supabase = createClient();
+  const user = useAuth();
+
+  async function handleSubmit(text: string) {
     if (!text) return;
+    if (!user) {
+      await supabase.auth.signInAnonymously();
+    }
     router.push("/new");
   }
 
