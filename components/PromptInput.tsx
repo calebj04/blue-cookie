@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
-import generate from "@/lib/actions";
 import Arrow from "./svgs/Arrow";
 
 export default function PromptInput() {
@@ -21,8 +20,18 @@ export default function PromptInput() {
       await supabase.auth.signInAnonymously();
     }
 
-    const { error } = await supabase.from("prompts").insert({ prompt: prompt });
-    if (error) console.log(error);
+    const { data, error } = await supabase
+      .from("prompts")
+      .insert({ prompt: prompt })
+      .select("id")
+      .single();
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+
+    sessionStorage.setItem("promptId", data.id);
 
     router.push("/idea");
   }
