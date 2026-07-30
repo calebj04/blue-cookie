@@ -9,7 +9,7 @@ export default function Search() {
   const router = useRouter();
 
   function handleSubmit(text: string) {
-    alert(text);
+    if (!text) return;
     router.push("/new");
   }
 
@@ -39,10 +39,12 @@ export default function Search() {
           outline-none
         "
         />
-        <Arrow
-          onClick={() => handleSubmit(text)}
-          className="absolute top-1/5 right-5 w-7 cursor-pointer hover:scale-110 transition-transform active:scale-90"
-        />
+        <div className="absolute top-0 right-0 p-2 h-full aspect-square">
+          <Arrow
+            onClick={() => handleSubmit(text)}
+            className="p-1.5 cursor-pointer rounded-full hover:bg-black/5 transition-transform"
+          />
+        </div>
       </form>
     </>
   );
