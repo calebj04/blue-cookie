@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
+import generate from "@/lib/actions";
 import Arrow from "./svgs/Arrow";
 
 export default function PromptInput() {
@@ -13,11 +14,13 @@ export default function PromptInput() {
   const supabase = createClient();
   const user = useAuth();
 
-  async function handleSubmit(text: string) {
-    if (!text) return;
+  async function handleSubmit(input: string) {
+    if (!input) return;
     if (!user) {
       await supabase.auth.signInAnonymously();
     }
+    const result = await generate({ input });
+    console.log("result", result);
     router.push("/new");
   }
 
