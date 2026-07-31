@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import IdeaDisplay from "./IdeaDisplay";
 import generate from "@/lib/actions";
 
 export default function Idea() {
@@ -29,9 +30,14 @@ export default function Idea() {
       </div>
     );
   }
-  return (
-    <div className="flex flex-col min-h-screen items-center justify-center overflow-hidden p-4 animate-fade-in-up">
-      {idea && JSON.stringify(JSON.parse(idea), null, 2)}
-    </div>
-  );
+
+  if (idea) {
+    const parsedIdea = JSON.parse(idea);
+
+    return (
+      <div className="flex flex-col min-h-screen items-center justify-center overflow-hidden p-4 animate-fade-in-up">
+        <IdeaDisplay idea={parsedIdea} />
+      </div>
+    );
+  }
 }
