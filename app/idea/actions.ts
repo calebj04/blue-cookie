@@ -2,8 +2,9 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { Octokit } from "octokit";
+import { Idea } from "./page";
 
-export default async function start() {
+export default async function start({ idea }: { idea: Idea }) {
   const supabase = await createClient();
 
   const { data, error } = await supabase.auth.getSession();
