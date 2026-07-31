@@ -2,7 +2,7 @@ import { Nunito } from "next/font/google";
 import "./globals.css";
 import { getUser } from "@/lib/supabase/server";
 import AuthProvider from "@/components/providers/AuthProvider";
-import Header from "@/components/layout/header";
+import Header from "@/components/layout/Header";
 
 import "@/styles/styles.css";
 
