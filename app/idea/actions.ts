@@ -2,7 +2,7 @@
 
 import { createClient } from "@/lib/supabase/server";
 import { Octokit } from "octokit";
-import { Idea } from "./page";
+import { Idea } from "./types";
 
 export default async function start({ idea }: { idea: Idea }) {
   const supabase = await createClient();
