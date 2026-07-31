@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import IdeaDisplay from "./IdeaDisplay";
 import generate from "@/lib/actions";
+import beginProject from "./beginProject";
 
 export default function Idea() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -37,6 +38,9 @@ export default function Idea() {
     return (
       <div className="flex flex-col min-h-screen items-center justify-center overflow-hidden p-4 animate-fade-in-up">
         <IdeaDisplay idea={parsedIdea} />
+        <div onClick={beginProject} className="border-2 cursor-pointer">
+          Click me!
+        </div>
       </div>
     );
   }

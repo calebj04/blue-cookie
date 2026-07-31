@@ -10,6 +10,9 @@ async function signInWithGithub() {
   const supabase = createClient();
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
+    options: {
+      scopes: "repo",
+    },
   });
 
   if (error) {
@@ -40,7 +43,7 @@ export default function Account() {
   return (
     <div
       onClick={signInWithGithub}
-      className="bg-white hover:bg-gray-100 px-4 py-2 flex justify-between rounded-md text-lg text-black"
+      className="bg-white hover:bg-gray-100 px-4 py-2 flex justify-between cursor-pointer rounded-md text-lg text-black"
     >
       <GitHub className="w-6 h-6 mr-2" />
       Sign in with GitHub
