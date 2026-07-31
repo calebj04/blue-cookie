@@ -13,13 +13,9 @@ interface Idea {
   core_concepts: string[];
 }
 
-interface IdeaDisplayProps {
-  idea: Idea;
-}
-
-export default function IdeaDisplay({ idea }: IdeaDisplayProps) {
+export default function MapJSON({ idea }: { idea: Idea }) {
   return (
-    <div className="min-h-screen p-25 text-white">
+    <div className="min-h-screen p-26 text-white">
       <div className="mx-auto max-w-6xl space-y-8">
         {/* Header Card */}
         <section className="rounded-3xl border border-white/10 bg-white/5 p-8 shadow-xl backdrop-blur">

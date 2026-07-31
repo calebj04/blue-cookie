@@ -10,8 +10,6 @@ export default async function beginProject() {
     console.error("Error fetching session:", error);
   }
 
-  console.log("stuufz", data.session?.provider_token);
-
   const octokit = new Octokit({
     auth: data.session?.provider_token,
   });

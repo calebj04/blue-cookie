@@ -1,6 +1,6 @@
 "use client";
 
-import PromptInput from "@/components/PromptInput";
+import PromptInput from "@/app/idea/PromptInput";
 
 export default function Home() {
   return (
