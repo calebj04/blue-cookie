@@ -24,7 +24,7 @@ export default async function RootLayout({
         <AuthProvider initialUser={user}>
           <Header />
           <div className="absolute max-h-full top-0 left-0 w-full h-200 bg-linear-to-b from-blue-500 to-transparent pointer-events-none -z-10" />
-          <main className="min-h-screen w-full z-10 grid-background">
+          <main className="min-h-screen w-full grid-background">
             {children}
           </main>
         </AuthProvider>
