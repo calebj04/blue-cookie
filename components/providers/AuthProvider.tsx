@@ -29,7 +29,6 @@ export default function AuthProvider({
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event, session) => {
       setUser(session?.user ?? null);
-      console.log("Yes mommy?");
 
       if (session && session.provider_token) {
         window.localStorage.setItem(
