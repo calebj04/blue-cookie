@@ -11,4 +11,5 @@ export interface Idea {
   }[];
   future_features: string[];
   core_concepts: string[];
+  readme: string;
 }
