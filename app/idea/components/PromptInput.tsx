@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
-import Arrow from "../../components/svgs/Arrow";
+import Arrow from "@/components/svgs/Arrow";
 
 export default function PromptInput() {
   const [text, setText] = useState("");

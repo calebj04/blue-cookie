@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import generate from "@/lib/actions";
+import { generate } from "./actions";
 import MapJSON from "./components/MapJSON";
 import StartProject from "./components/StartProject";
 
