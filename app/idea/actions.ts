@@ -1,10 +1,8 @@
 "use server";
 
 import { GoogleGenAI } from "@google/genai";
-import { Octokit } from "octokit";
 import { createClient } from "@/lib/supabase/server";
 import { prompt } from "@/lib/prompts";
-import { Idea } from "./types";
 
 export async function generate(input: string) {
   const ai = new GoogleGenAI({});
@@ -38,22 +36,4 @@ async function uploadToSupabase(response: string | undefined) {
       console.error(error);
     }
   }
-}
-
-export async function start({ idea }: { idea: Idea }) {
-  const token = window.localStorage.getItem("oauth_provider_token");
-
-  const octokit = new Octokit({
-    auth: token,
-  });
-
-  await octokit.request("POST /user/repos", {
-    name: idea.title,
-    description: idea.description,
-    homepage: "https://github.com",
-    private: false,
-    headers: {
-      "X-GitHub-Api-Version": "2026-03-10",
-    },
-  });
 }
