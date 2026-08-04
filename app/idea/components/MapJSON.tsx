@@ -1,13 +1,5 @@
-import { start } from "../actions";
+import { start } from "../github";
 import type Idea from "../types";
-
-function StartProject({ idea }: { idea: Idea }) {
-  return (
-    <div onClick={() => start({ idea })} className="border-2 cursor-pointer">
-      Click me!
-    </div>
-  );
-}
 
 export default function MapJSON({ idea }: { idea: Idea }) {
   return (

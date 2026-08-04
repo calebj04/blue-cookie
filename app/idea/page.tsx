@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { generate } from "./actions";
+import { generate } from "./generate";
 import MapJSON from "./components/MapJSON";
 
 export default function Idea() {
