@@ -74,12 +74,12 @@ export default function MapJSON({ idea }: { idea: Idea }) {
                   className="rounded-3xl bg-fuchsia-100 p-4 ring-1 ring-fuchsia-300/50"
                 >
                   <p className="mb-3 text-lg font-semibold text-fuchsia-900">
-                    Phase {i + 1}
+                    {milestone.name}
                   </p>
 
                   {milestone.issues.slice(0, 3).map((issue, j) => (
                     <p key={j} className="text-sm text-fuchsia-800">
-                      • {issue}
+                      • {issue.name}
                     </p>
                   ))}
                 </div>

@@ -13,6 +13,8 @@ export async function generate(input: string) {
 
   await uploadToSupabase(response.text);
 
+  console.log("Response from Google Gemini API:", response.text);
+
   return response.text;
 }
 

@@ -7,7 +7,11 @@ export default interface Idea {
   }[];
   tech_stack: string[];
   milestones: {
-    issues: string[];
+    name: string;
+    issues: {
+      name: string;
+      requirements: string;
+    }[];
   }[];
   future_features: string[];
   core_concepts: string[];
