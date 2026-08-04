@@ -4,15 +4,14 @@ import type Idea from "../types";
 function StartProject({ idea }: { idea: Idea }) {
   return (
     <div onClick={() => start({ idea })} className="border-2 cursor-pointer">
-      {" "}
-      Click me!{" "}
+      Click me!
     </div>
   );
 }
 
 export default function MapJSON({ idea }: { idea: Idea }) {
   return (
-    <div className="min-h-screen py-26">
+    <div className="min-h-screen py-26 ">
       <div className="mx-auto max-w-6xl space-y-6">
         {/* Title */}
         <div className="bg-white rounded-[1.75rem] p-8">
@@ -25,15 +24,15 @@ export default function MapJSON({ idea }: { idea: Idea }) {
         {/* Top Grid */}
         <div className="grid grid-cols-3 gap-6">
           {/* User Flow */}
-          <section className="col-span-2 rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200/70">
-            <h2 className="mb-5 text-3xl font-semibold text-sky-900">
+          <section className="col-span-2 rounded-3xl bg-indigo-50 p-6 ring-1 ring-indigo-200/60">
+            <h2 className="mb-5 text-3xl font-semibold text-indigo-950">
               User Flow
             </h2>
 
             <div className="space-y-5">
               {idea.user_flows.map((flow, i) => (
                 <div key={i}>
-                  <h3 className="mb-3 text-lg font-semibold text-slate-800">
+                  <h3 className="mb-3 text-lg font-semibold text-indigo-900">
                     {flow.name}
                   </h3>
 
@@ -41,7 +40,7 @@ export default function MapJSON({ idea }: { idea: Idea }) {
                     {flow.steps.map((step, j) => (
                       <div
                         key={j}
-                        className="rounded-2xl bg-sky-100 px-4 py-2 text-sm text-sky-900"
+                        className="rounded-2xl bg-indigo-200 px-4 py-2 text-sm text-indigo-950"
                       >
                         {j + 1}. {step}
                       </div>
@@ -71,8 +70,8 @@ export default function MapJSON({ idea }: { idea: Idea }) {
         {/* Bottom Grid */}
         <div className="grid grid-cols-2 gap-6">
           {/* Milestones */}
-          <section className="rounded-3xl bg-violet-50 p-6 ring-1 ring-violet-200/70">
-            <h2 className="mb-5 text-3xl font-semibold text-violet-900">
+          <section className="rounded-3xl bg-fuchsia-50 p-6 ring-1 ring-fuchsia-200/70">
+            <h2 className="mb-5 text-3xl font-semibold text-fuchsia-950">
               Milestones
             </h2>
 
@@ -80,14 +79,14 @@ export default function MapJSON({ idea }: { idea: Idea }) {
               {idea.milestones.map((milestone, i) => (
                 <div
                   key={i}
-                  className="rounded-3xl bg-white p-4 ring-1 ring-violet-100/80"
+                  className="rounded-3xl bg-fuchsia-100 p-4 ring-1 ring-fuchsia-300/50"
                 >
-                  <p className="mb-3 text-lg font-semibold text-violet-800">
+                  <p className="mb-3 text-lg font-semibold text-fuchsia-900">
                     Phase {i + 1}
                   </p>
 
                   {milestone.issues.slice(0, 3).map((issue, j) => (
-                    <p key={j} className="text-sm text-violet-700">
+                    <p key={j} className="text-sm text-fuchsia-800">
                       • {issue}
                     </p>
                   ))}
@@ -96,10 +95,10 @@ export default function MapJSON({ idea }: { idea: Idea }) {
             </div>
           </section>
 
-          {/* Future + Start Project*/}
+          {/* Future + Start Project */}
           <div className="flex flex-col justify-between gap-4">
-            <section className="rounded-3xl bg-amber-50 p-6 ring-1 ring-amber-200/70">
-              <h2 className="mb-5 text-3xl font-semibold text-amber-900">
+            <section className="rounded-3xl bg-orange-50 p-6 ring-1 ring-orange-200/70">
+              <h2 className="mb-5 text-3xl font-semibold text-orange-950">
                 Future Features
               </h2>
 
@@ -107,21 +106,22 @@ export default function MapJSON({ idea }: { idea: Idea }) {
                 {idea.future_features.map((feature, i) => (
                   <div
                     key={i}
-                    className="rounded-2xl bg-amber-100 px-4 py-3 text-sm text-amber-900"
+                    className="rounded-2xl bg-orange-200 px-4 py-3 text-sm text-orange-950"
                   >
                     {feature}
                   </div>
                 ))}
               </div>
             </section>
-            <section className="flex flex-1 flex-col justify-center rounded-3xl p-6 ring-1 ring-slate-200/70">
-              <h2 className="mb-5 text-3xl font-semibold text-white">
+
+            <section className="flex flex-1 flex-col justify-center rounded-[1.75rem] bg-white p-8">
+              <h2 className="mb-5 text-3xl font-semibold text-slate-950">
                 Start Project
               </h2>
 
               <button
                 onClick={() => start({ idea })}
-                className="bg-white cursor-pointer relative overflow-hidden rounded-2xl px-6 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-[1.03] hover:shadow-xl active:scale-95"
+                className="relative cursor-pointer overflow-hidden rounded-2xl bg-blue-600 px-6 py-4 text-lg font-bold text-white transition-all duration-300 hover:scale-[1.03] hover:bg-blue-700 hover:shadow-xl active:scale-95"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Launch with GitHub
@@ -146,17 +146,17 @@ function SimpleList({
 }) {
   const badgeStyle =
     tone === "emerald"
-      ? "bg-emerald-100 text-emerald-900 ring-1 ring-emerald-200/70"
-      : "bg-cyan-100 text-cyan-900 ring-1 ring-cyan-200/70";
+      ? "bg-teal-200 text-teal-950 ring-1 ring-teal-300/60"
+      : "bg-sky-200 text-sky-950 ring-1 ring-sky-300/60";
 
   const sectionStyle =
     tone === "emerald"
-      ? "rounded-3xl bg-emerald-50 p-6 ring-1 ring-emerald-200/70"
-      : "rounded-3xl bg-cyan-50 p-6 ring-1 ring-cyan-200/70";
+      ? "rounded-3xl bg-teal-50 p-6 ring-1 ring-teal-200/70"
+      : "rounded-3xl bg-sky-50 p-6 ring-1 ring-sky-200/70";
 
   return (
     <section className={sectionStyle}>
-      <h2 className="mb-4 text-3xl font-semibold text-slate-900">{title}</h2>
+      <h2 className="mb-4 text-3xl font-semibold text-zinc-950">{title}</h2>
 
       <div className="flex flex-wrap gap-3">
         {items.map((item, i) => (
