@@ -88,7 +88,7 @@ export default function MapJSON({ idea }: { idea: Idea }) {
           </section>
 
           {/* Future + Start Project */}
-          <div className="flex flex-col justify-between gap-4">
+          <div className="flex flex-col justify-between gap-6">
             <section className="rounded-3xl bg-orange-50 p-6 ring-1 ring-orange-200/70">
               <h2 className="mb-5 text-3xl font-semibold text-orange-950">
                 Future Features
