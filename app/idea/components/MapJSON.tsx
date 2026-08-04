@@ -30,12 +30,12 @@ function StartProject({ idea }: { idea: Idea }) {
 
 export default function MapJSON({ idea }: { idea: Idea }) {
   return (
-    <div className="min-h-screen px-10 py-20">
+    <div className="min-h-screen px-10 py-26">
       <div className="mx-auto max-w-6xl space-y-6">
         {/* Title */}
-        <div>
-          <h1 className="text-4xl font-bold text-neutral-900">{idea.title}</h1>
-          <p className="mt-2 max-w-4xl text-lg text-neutral-600">
+        <div className="rounded-[1.75rem] bg-gradient-to-r from-sky-100 via-indigo-50 to-cyan-100 p-8">
+          <h1 className="text-4xl font-bold text-slate-950">{idea.title}</h1>
+          <p className="mt-3 max-w-4xl text-lg text-slate-700">
             {idea.description}
           </p>
         </div>
@@ -43,23 +43,23 @@ export default function MapJSON({ idea }: { idea: Idea }) {
         {/* Top Grid */}
         <div className="grid grid-cols-3 gap-4">
           {/* User Flow */}
-          <section className="col-span-2 rounded-2xl bg-white p-5 shadow-sm">
-            <h2 className="mb-4 text-lg font-semibold text-neutral-900">
+          <section className="col-span-2 rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200/70">
+            <h2 className="mb-5 text-3xl font-semibold text-sky-900">
               User Flow
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-5">
               {idea.user_flows.map((flow, i) => (
                 <div key={i}>
-                  <h3 className="mb-2 font-medium text-neutral-800">
+                  <h3 className="mb-3 text-lg font-semibold text-slate-800">
                     {flow.name}
                   </h3>
 
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-3">
                     {flow.steps.map((step, j) => (
                       <div
                         key={j}
-                        className="rounded-xl bg-neutral-100 px-3 py-2 text-sm text-neutral-700"
+                        className="rounded-2xl bg-sky-100 px-4 py-2 text-sm text-sky-900"
                       >
                         {j + 1}. {step}
                       </div>
@@ -72,29 +72,40 @@ export default function MapJSON({ idea }: { idea: Idea }) {
 
           {/* Stack + Concepts */}
           <div className="space-y-4">
-            <SimpleList title="Tech Stack" items={idea.tech_stack} />
+            <SimpleList
+              title="Tech Stack"
+              items={idea.tech_stack}
+              tone="cyan"
+            />
 
-            <SimpleList title="Core Concepts" items={idea.core_concepts} />
+            <SimpleList
+              title="Core Concepts"
+              items={idea.core_concepts}
+              tone="emerald"
+            />
           </div>
         </div>
 
         {/* Bottom Grid */}
         <div className="grid grid-cols-2 gap-4">
           {/* Milestones */}
-          <section className="rounded-2xl bg-white p-5 shadow-sm">
-            <h2 className="mb-4 text-lg font-semibold text-neutral-900">
+          <section className="rounded-3xl bg-violet-50 p-6 ring-1 ring-violet-200/70">
+            <h2 className="mb-5 text-3xl font-semibold text-violet-900">
               Milestones
             </h2>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-4">
               {idea.milestones.map((milestone, i) => (
-                <div key={i} className="rounded-xl bg-neutral-100 p-3">
-                  <p className="mb-2 text-sm font-semibold text-neutral-700">
+                <div
+                  key={i}
+                  className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-violet-100/80"
+                >
+                  <p className="mb-3 text-lg font-semibold text-violet-800">
                     Phase {i + 1}
                   </p>
 
                   {milestone.issues.slice(0, 3).map((issue, j) => (
-                    <p key={j} className="text-sm text-neutral-600">
+                    <p key={j} className="text-sm text-violet-700">
                       • {issue}
                     </p>
                   ))}
@@ -104,16 +115,16 @@ export default function MapJSON({ idea }: { idea: Idea }) {
           </section>
 
           {/* Future */}
-          <section className="rounded-2xl bg-white p-5 shadow-sm">
-            <h2 className="mb-4 text-lg font-semibold text-neutral-900">
+          <section className="rounded-3xl bg-amber-50 p-6 ring-1 ring-amber-200/70">
+            <h2 className="mb-5 text-3xl font-semibold text-amber-900">
               Future Features
             </h2>
 
-            <div className="space-y-2">
+            <div className="space-y-3">
               {idea.future_features.map((feature, i) => (
                 <div
                   key={i}
-                  className="rounded-xl bg-neutral-100 px-3 py-2 text-sm text-neutral-700"
+                  className="rounded-2xl bg-amber-100 px-4 py-3 text-sm text-amber-900"
                 >
                   {feature}
                 </div>
@@ -126,16 +137,34 @@ export default function MapJSON({ idea }: { idea: Idea }) {
   );
 }
 
-function SimpleList({ title, items }: { title: string; items: string[] }) {
-  return (
-    <section className="rounded-2xl bg-white p-5 shadow-sm">
-      <h2 className="mb-3 text-lg font-semibold text-neutral-900">{title}</h2>
+function SimpleList({
+  title,
+  items,
+  tone,
+}: {
+  title: string;
+  items: string[];
+  tone: "cyan" | "emerald";
+}) {
+  const badgeStyle =
+    tone === "emerald"
+      ? "bg-emerald-100 text-emerald-900 ring-1 ring-emerald-200/70"
+      : "bg-cyan-100 text-cyan-900 ring-1 ring-cyan-200/70";
 
-      <div className="flex flex-wrap gap-2">
+  const sectionStyle =
+    tone === "emerald"
+      ? "rounded-3xl bg-emerald-50 p-6 ring-1 ring-emerald-200/70"
+      : "rounded-3xl bg-cyan-50 p-6 ring-1 ring-cyan-200/70";
+
+  return (
+    <section className={sectionStyle}>
+      <h2 className="mb-4 text-3xl font-semibold text-slate-900">{title}</h2>
+
+      <div className="flex flex-wrap gap-3">
         {items.map((item, i) => (
           <span
             key={i}
-            className="rounded-lg bg-neutral-100 px-3 py-1.5 text-sm text-neutral-700"
+            className={`${badgeStyle} rounded-2xl px-4 py-2 text-sm font-medium`}
           >
             {item}
           </span>
