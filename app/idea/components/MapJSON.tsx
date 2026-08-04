@@ -30,10 +30,10 @@ function StartProject({ idea }: { idea: Idea }) {
 
 export default function MapJSON({ idea }: { idea: Idea }) {
   return (
-    <div className="min-h-screen px-10 py-26">
+    <div className="min-h-screen py-26">
       <div className="mx-auto max-w-6xl space-y-6">
         {/* Title */}
-        <div className="rounded-[1.75rem] bg-gradient-to-r from-sky-100 via-indigo-50 to-cyan-100 p-8">
+        <div className="bg-white rounded-[1.75rem] p-8">
           <h1 className="text-4xl font-bold text-slate-950">{idea.title}</h1>
           <p className="mt-3 max-w-4xl text-lg text-slate-700">
             {idea.description}
@@ -41,7 +41,7 @@ export default function MapJSON({ idea }: { idea: Idea }) {
         </div>
 
         {/* Top Grid */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-3 gap-6">
           {/* User Flow */}
           <section className="col-span-2 rounded-3xl bg-slate-50 p-6 ring-1 ring-slate-200/70">
             <h2 className="mb-5 text-3xl font-semibold text-sky-900">
@@ -87,7 +87,7 @@ export default function MapJSON({ idea }: { idea: Idea }) {
         </div>
 
         {/* Bottom Grid */}
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           {/* Milestones */}
           <section className="rounded-3xl bg-violet-50 p-6 ring-1 ring-violet-200/70">
             <h2 className="mb-5 text-3xl font-semibold text-violet-900">
@@ -98,7 +98,7 @@ export default function MapJSON({ idea }: { idea: Idea }) {
               {idea.milestones.map((milestone, i) => (
                 <div
                   key={i}
-                  className="rounded-3xl bg-white p-4 shadow-sm ring-1 ring-violet-100/80"
+                  className="rounded-3xl bg-white p-4 ring-1 ring-violet-100/80"
                 >
                   <p className="mb-3 text-lg font-semibold text-violet-800">
                     Phase {i + 1}
@@ -114,23 +114,39 @@ export default function MapJSON({ idea }: { idea: Idea }) {
             </div>
           </section>
 
-          {/* Future */}
-          <section className="rounded-3xl bg-amber-50 p-6 ring-1 ring-amber-200/70">
-            <h2 className="mb-5 text-3xl font-semibold text-amber-900">
-              Future Features
-            </h2>
+          {/* Future + Start Project*/}
+          <div className="flex flex-col justify-between gap-4">
+            <section className="rounded-3xl bg-amber-50 p-6 ring-1 ring-amber-200/70">
+              <h2 className="mb-5 text-3xl font-semibold text-amber-900">
+                Future Features
+              </h2>
 
-            <div className="space-y-3">
-              {idea.future_features.map((feature, i) => (
-                <div
-                  key={i}
-                  className="rounded-2xl bg-amber-100 px-4 py-3 text-sm text-amber-900"
-                >
-                  {feature}
-                </div>
-              ))}
-            </div>
-          </section>
+              <div className="space-y-3">
+                {idea.future_features.map((feature, i) => (
+                  <div
+                    key={i}
+                    className="rounded-2xl bg-amber-100 px-4 py-3 text-sm text-amber-900"
+                  >
+                    {feature}
+                  </div>
+                ))}
+              </div>
+            </section>
+            <section className="flex flex-1 flex-col justify-center rounded-3xl p-6 ring-1 ring-slate-200/70">
+              <h2 className="mb-5 text-3xl font-semibold text-white">
+                Start Project
+              </h2>
+
+              <button
+                onClick={() => start({ idea })}
+                className="bg-white cursor-pointer relative overflow-hidden rounded-2xl px-6 py-4 text-lg font-bold text-black transition-all duration-300 hover:scale-[1.03] hover:shadow-xl active:scale-95"
+              >
+                <span className="relative z-10 flex items-center justify-center gap-2">
+                  Launch with GitHub
+                </span>
+              </button>
+            </section>
+          </div>
         </div>
       </div>
     </div>
