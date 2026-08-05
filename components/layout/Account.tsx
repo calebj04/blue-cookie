@@ -3,22 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import GitHub from "@/components/svgs/GitHub";
-import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
-
-export async function signInWithGithub() {
-  const supabase = createClient();
-  const { error } = await supabase.auth.signInWithOAuth({
-    provider: "github",
-    options: {
-      scopes: "repo",
-    },
-  });
-
-  if (error) {
-    console.error("GitHub sign-in error:", error);
-  }
-}
+import { signInWithGithub } from "@/lib/actions";
 
 export default function Account() {
   const user = useAuth();

@@ -1,7 +1,31 @@
+"use client";
+
+import { useState } from "react";
+import type { User } from "@supabase/supabase-js";
+import { useAuth } from "@/components/providers/AuthProvider";
+import { SignIn } from "../components/Modals";
 import { start } from "../github";
 import type Idea from "../types";
 
 export default function MapJSON({ idea }: { idea: Idea }) {
+  const [modal, setModal] = useState(false);
+  const user = useAuth();
+
+  function launch({ idea }: { idea: Idea }, user: User | null) {
+    if (!user || user?.is_anonymous) {
+      setModal(true);
+      return;
+    }
+
+    const token = window.localStorage.getItem("oauth_provider_token");
+
+    if (token) {
+      start({ idea }, token);
+    } else {
+      console.log("Error getting token.");
+    }
+  }
+
   return (
     <div className="min-h-screen pt-26 pb-10">
       <div className="mx-auto max-w-6xl space-y-6">
@@ -112,13 +136,14 @@ export default function MapJSON({ idea }: { idea: Idea }) {
               </h2>
 
               <button
-                onClick={() => start({ idea })}
+                onClick={() => launch({ idea }, user)}
                 className="relative cursor-pointer overflow-hidden rounded-2xl bg-blue-600 px-6 py-4 text-lg font-bold text-white transition-all duration-300 hover:scale-[1.03] hover:bg-blue-700 hover:shadow-xl active:scale-95"
               >
                 <span className="relative z-10 flex items-center justify-center gap-2">
                   Launch with GitHub
                 </span>
               </button>
+              {modal && <SignIn setModal={setModal} />}
             </section>
           </div>
         </div>
