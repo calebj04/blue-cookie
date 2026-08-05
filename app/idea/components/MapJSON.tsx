@@ -3,7 +3,7 @@ import type Idea from "../types";
 
 export default function MapJSON({ idea }: { idea: Idea }) {
   return (
-    <div className="min-h-screen py-26 ">
+    <div className="min-h-screen pt-26 pb-10">
       <div className="mx-auto max-w-6xl space-y-6">
         {/* Title */}
         <div className="bg-white rounded-[1.75rem] p-8">
