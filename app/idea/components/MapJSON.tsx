@@ -32,7 +32,7 @@ export default function MapJSON({ idea }: { idea: Idea }) {
 
     setToast(true);
 
-    setInterval(() => {
+    setTimeout(() => {
       window.open(`https://github.com/${owner}/${repo}`, "_blank");
       setToast(false);
     }, 5000);
