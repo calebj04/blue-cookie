@@ -1,8 +1,10 @@
-import { Octokit } from "octokit";
-import { createClient } from "@/lib/supabase/client";
-import Idea from "./types";
+"use server";
 
-export async function start({ idea }: { idea: Idea }) {
+import { Octokit } from "octokit";
+import Idea from "./types";
+import { createClient } from "@/lib/supabase/server";
+
+export async function start({ idea }: { idea: Idea }, token: string) {
   const supabase = await createClient();
 
   const {
@@ -12,8 +14,6 @@ export async function start({ idea }: { idea: Idea }) {
   if (!user) {
     throw new Error("User is not authenticated");
   }
-
-  const token = window.localStorage.getItem("oauth_provider_token");
 
   const octokit = new Octokit({
     auth: token,
