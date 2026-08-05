@@ -3,13 +3,20 @@
 import { useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { useAuth } from "@/components/providers/AuthProvider";
-import { SignIn } from "../components/Modals";
+import { Modal, Toast } from "./Notifications";
 import { start } from "../github";
 import type Idea from "../types";
 
 export default function MapJSON({ idea }: { idea: Idea }) {
   const [modal, setModal] = useState(false);
+  const [toast, setToast] = useState(true);
   const user = useAuth();
+
+  const owner = user?.user_metadata.user_name;
+  const repo = idea.title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
 
   function launch({ idea }: { idea: Idea }, user: User | null) {
     if (!user || user?.is_anonymous) {
@@ -20,10 +27,14 @@ export default function MapJSON({ idea }: { idea: Idea }) {
     const token = window.localStorage.getItem("oauth_provider_token");
 
     if (token) {
-      start({ idea }, token);
-    } else {
-      console.log("Error getting token.");
+      start({ idea }, token, owner, repo);
     }
+
+    setToast(true);
+
+    setInterval(() => {
+      window.open(`https://github.com/${owner}/${repo}`, "_blank");
+    }, 3000);
   }
 
   return (
@@ -143,7 +154,8 @@ export default function MapJSON({ idea }: { idea: Idea }) {
                   Launch with GitHub
                 </span>
               </button>
-              {modal && <SignIn setModal={setModal} />}
+              {modal && <Modal setModal={setModal} />}
+              {toast && <Toast />}
             </section>
           </div>
         </div>

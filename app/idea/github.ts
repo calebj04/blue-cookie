@@ -8,7 +8,12 @@ const API_VERSION_HEADERS = {
   "X-GitHub-Api-Version": "2026-03-10",
 } as const;
 
-export async function start({ idea }: { idea: Idea }, token: string) {
+export async function start(
+  { idea }: { idea: Idea },
+  token: string,
+  owner: string,
+  repo: string,
+) {
   const supabase = await createClient();
 
   const {
@@ -22,13 +27,6 @@ export async function start({ idea }: { idea: Idea }, token: string) {
   const octokit = new Octokit({
     auth: token,
   });
-
-  const owner = user.user_metadata.user_name;
-
-  const repo = idea.title
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "");
 
   await octokit.request("POST /user/repos", {
     name: repo,
