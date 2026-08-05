@@ -4,6 +4,10 @@ import { Octokit } from "octokit";
 import Idea from "./types";
 import { createClient } from "@/lib/supabase/server";
 
+const API_VERSION_HEADERS = {
+  "X-GitHub-Api-Version": "2026-03-10",
+} as const;
+
 export async function start({ idea }: { idea: Idea }, token: string) {
   const supabase = await createClient();
 
@@ -31,43 +35,42 @@ export async function start({ idea }: { idea: Idea }, token: string) {
     description: idea.description,
     homepage: "https://github.com",
     private: false,
-    headers: {
-      "X-GitHub-Api-Version": "2026-03-10",
-    },
+    headers: API_VERSION_HEADERS,
   });
 
-  await octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
-    owner: owner,
-    repo: repo,
-    path: "README.md",
-    message: "Add README.md",
-    content: Buffer.from(idea.readme).toString("base64"),
-    headers: {
-      "X-GitHub-Api-Version": "2026-03-10",
-    },
-  });
-
-  for (const [i, milestone] of idea.milestones.entries()) {
-    await octokit.request("POST /repos/{owner}/{repo}/milestones", {
+  await Promise.all([
+    octokit.request("PUT /repos/{owner}/{repo}/contents/{path}", {
       owner,
       repo,
-      title: milestone.name,
-      headers: {
-        "X-GitHub-Api-Version": "2026-03-10",
-      },
-    });
+      path: "README.md",
+      message: "Add README.md",
+      content: Buffer.from(idea.readme).toString("base64"),
+      headers: API_VERSION_HEADERS,
+    }),
 
-    for (const issue of milestone.issues) {
-      await octokit.request("POST /repos/{owner}/{repo}/issues", {
-        owner,
-        repo,
-        title: issue.name,
-        body: issue.requirements,
-        milestone: i + 1,
-        headers: {
-          "X-GitHub-Api-Version": "2026-03-10",
+    ...idea.milestones.map(async (milestone) => {
+      const { data: gitMilestone } = await octokit.request(
+        "POST /repos/{owner}/{repo}/milestones",
+        {
+          owner,
+          repo,
+          title: milestone.name,
+          headers: API_VERSION_HEADERS,
         },
-      });
-    }
-  }
+      );
+
+      await Promise.all(
+        milestone.issues.map((issue) =>
+          octokit.request("POST /repos/{owner}/{repo}/issues", {
+            owner,
+            repo,
+            title: issue.name,
+            body: issue.requirements,
+            milestone: gitMilestone.number,
+            headers: API_VERSION_HEADERS,
+          }),
+        ),
+      );
+    }),
+  ]);
 }
