@@ -4,7 +4,7 @@ import { createPortal } from "react-dom";
 import { signInWithGithub } from "@/lib/actions";
 import GitHub from "@/components/svgs/GitHub";
 
-export function SignIn({ setModal }: { setModal: (value: boolean) => void }) {
+export function Modal({ setModal }: { setModal: (value: boolean) => void }) {
   return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl">
@@ -31,6 +31,25 @@ export function SignIn({ setModal }: { setModal: (value: boolean) => void }) {
         >
           Cancel
         </button>
+      </div>
+    </div>,
+    document.body,
+  );
+}
+
+export function Toast() {
+  return createPortal(
+    <div className="fixed bottom-6 right-6 z-999 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-green-200">
+      <div className="flex items-center gap-3">
+        <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700">
+          ✓
+        </div>
+
+        <div>
+          <h3 className="font-semibold text-slate-950">Repository Created</h3>
+
+          <p className="mt-1 text-sm text-slate-600">Redirecting...</p>
+        </div>
       </div>
     </div>,
     document.body,
