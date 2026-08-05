@@ -6,7 +6,7 @@ import GitHub from "@/components/svgs/GitHub";
 import { createClient } from "@/lib/supabase/client";
 import { useAuth } from "@/components/providers/AuthProvider";
 
-async function signInWithGithub() {
+export async function signInWithGithub() {
   const supabase = createClient();
   const { error } = await supabase.auth.signInWithOAuth({
     provider: "github",
@@ -23,7 +23,7 @@ async function signInWithGithub() {
 export default function Account() {
   const user = useAuth();
 
-  if (user) {
+  if (user && !user.is_anonymous) {
     return (
       <Link
         className="cursor-pointer"
