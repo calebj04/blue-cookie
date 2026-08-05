@@ -6,7 +6,7 @@ import GitHub from "@/components/svgs/GitHub";
 
 export function Modal({ setModal }: { setModal: (value: boolean) => void }) {
   return createPortal(
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 animate-fade-in-up">
       <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl">
         <h2 className="text-2xl font-bold text-slate-950">Sign in required</h2>
 
@@ -39,7 +39,7 @@ export function Modal({ setModal }: { setModal: (value: boolean) => void }) {
 
 export function Toast() {
   return createPortal(
-    <div className="fixed bottom-6 right-6 z-999 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-green-200">
+    <div className="fixed bottom-6 right-6 z-999 rounded-3xl bg-white p-5 shadow-xl ring-1 ring-green-200 animate-fade-in-up">
       <div className="flex items-center gap-3">
         <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700">
           ✓

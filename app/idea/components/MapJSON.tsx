@@ -9,7 +9,7 @@ import type Idea from "../types";
 
 export default function MapJSON({ idea }: { idea: Idea }) {
   const [modal, setModal] = useState(false);
-  const [toast, setToast] = useState(true);
+  const [toast, setToast] = useState(false);
   const user = useAuth();
 
   const owner = user?.user_metadata.user_name;
@@ -34,7 +34,8 @@ export default function MapJSON({ idea }: { idea: Idea }) {
 
     setInterval(() => {
       window.open(`https://github.com/${owner}/${repo}`, "_blank");
-    }, 3000);
+      setToast(false);
+    }, 5000);
   }
 
   return (
