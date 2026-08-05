@@ -14,9 +14,9 @@ export default function MapJSON({ idea }: { idea: Idea }) {
         </div>
 
         {/* Top Grid */}
-        <div className="grid grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
           {/* User Flow */}
-          <section className="col-span-2 rounded-3xl bg-indigo-50 p-6 ring-1 ring-indigo-200/60">
+          <section className="rounded-3xl bg-indigo-50 p-6 ring-1 ring-indigo-200/60 md:col-span-2">
             <h2 className="mb-5 text-3xl font-semibold text-indigo-950">
               User Flow
             </h2>
@@ -44,7 +44,7 @@ export default function MapJSON({ idea }: { idea: Idea }) {
           </section>
 
           {/* Stack + Concepts */}
-          <div className="space-y-4">
+          <div className="space-y-6">
             <SimpleList
               title="Tech Stack"
               items={idea.tech_stack}
@@ -60,14 +60,14 @@ export default function MapJSON({ idea }: { idea: Idea }) {
         </div>
 
         {/* Bottom Grid */}
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
           {/* Milestones */}
           <section className="rounded-3xl bg-fuchsia-50 p-6 ring-1 ring-fuchsia-200/70">
             <h2 className="mb-5 text-3xl font-semibold text-fuchsia-950">
               Milestones
             </h2>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
               {idea.milestones.map((milestone, i) => (
                 <div
                   key={i}
