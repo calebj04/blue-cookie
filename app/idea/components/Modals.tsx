@@ -1,8 +1,11 @@
+"use client";
+
+import { createPortal } from "react-dom";
 import { signInWithGithub } from "@/lib/actions";
 import GitHub from "@/components/svgs/GitHub";
 
 export function SignIn({ setModal }: { setModal: (value: boolean) => void }) {
-  return (
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
       <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-2xl">
         <h2 className="text-2xl font-bold text-slate-950">Sign in required</h2>
@@ -29,6 +32,7 @@ export function SignIn({ setModal }: { setModal: (value: boolean) => void }) {
           Cancel
         </button>
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
