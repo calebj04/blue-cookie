@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { Nunito } from "next/font/google";
 import "./globals.css";
 import { getUser } from "@/lib/supabase/server";
@@ -29,6 +30,7 @@ export default async function RootLayout({
           </main>
         </AuthProvider>
       </body>
+      <Analytics />
     </html>
   );
 }
